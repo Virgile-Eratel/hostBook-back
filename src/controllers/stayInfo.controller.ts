@@ -39,6 +39,7 @@ class StayInfoController {
         try {
             const { id } = req.params;
             const stay = await stayInfoService.getStayById(id);
+            console.log("WAAAAAAAAZZZZZZZZZAAAAAAAAAA");
             if (!stay) {
                 return res.status(404).json({ error: 'Stay not found' });
             }
