@@ -70,7 +70,9 @@ class StayInfoService {
             const prompt = `
 Tu es un assistant spécialisé dans la structuration de contenu Airbnb.
 
-Je vais te donner le texte complet d’un livret d’accueil en PDF. À partir de celui-ci, tu dois remplir un objet JSON respectant strictement le modèle suivant :
+Je vais te donner le texte complet d’un livret d’accueil en PDF. Même si le document est en anglais, tu dois traduire **toutes** les informations, y compris les clés du JSON et les valeurs textuelles, en français.
+
+Tu dois remplir un objet JSON respectant strictement le modèle suivant :
 
 \`\`\`ts
 {
