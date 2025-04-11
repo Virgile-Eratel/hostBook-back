@@ -17,3 +17,5 @@ node_modules/*
 .env
 package-lock.json
 yarn-lock.json
+yarn.lock
+.idea

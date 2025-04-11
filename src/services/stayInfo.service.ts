@@ -2,9 +2,16 @@ import { RecommendationType } from '@prisma/client';
 import PrismaService from './prisma.service';
 import dotenv from 'dotenv';
 import OpenAI from "openai";
+import crypto from 'crypto';
 const client = new OpenAI();
 
 dotenv.config();
+
+function generateRandomPassword(length = 8): string {
+    return 'pw' + crypto.randomBytes(Math.ceil(length / 2))
+        .toString('hex')
+        .slice(0, length);
+}
 
 class StayInfoService {
     private prisma = PrismaService.getInstance().getClient();
@@ -34,8 +41,12 @@ class StayInfoService {
             description?: string;
             type: "RESTAURANT" | "ACTIVITY" | "BAR" | "TOURISM" | "GROCERY";
         }>;
+        accessPassword?: string; // Mot de passe optionnel
     }) {
         const { arrival, departure, accommodation, recommendations = [] } = data;
+
+        const accessPassword = data.accessPassword || generateRandomPassword();
+
         return this.prisma.stayInfo.create({
             data: {
                 arrivalTime: arrival.time,
@@ -50,6 +61,7 @@ class StayInfoService {
                 ownerContact: accommodation.ownerContact,
                 ownerName: accommodation.ownerName,
                 generalInfo: accommodation.generalInfo,
+                accessPassword, // Ajouter le mot de passe
                 recommendations: {
                     create: recommendations.map((rec) => ({
                         name: rec.name,

@@ -28,6 +28,9 @@ model StayInfo {
   ownerName    String
   generalInfo  String
 
+  // Security
+  accessPassword String
+
   // Unified Recommendations
   recommendations Recommendation[]
 }
