@@ -38,11 +38,24 @@ class StayInfoController {
     async getStayById(req: Request, res: Response) {
         try {
             const { id } = req.params;
+            const { password } = req.query; // Récupérer le mot de passe depuis les paramètres de la requête
+
+            // Vérifier si le mot de passe est fourni
+            if (!password) {
+                return res.status(401).json({ error: 'Password is required to access stay information' });
+            }
+
             const stay = await stayInfoService.getStayById(id);
-            console.log("WAAAAAAAAZZZZZZZZZAAAAAAAAAA");
+
             if (!stay) {
                 return res.status(404).json({ error: 'Stay not found' });
             }
+
+            // Vérifier si le mot de passe correspond
+            if (stay.accessPassword !== password) {
+                return res.status(401).json({ error: 'Invalid password' });
+            }
+
             res.status(200).json(stay);
         } catch (error) {
             console.error('Error fetching stay:', error);
