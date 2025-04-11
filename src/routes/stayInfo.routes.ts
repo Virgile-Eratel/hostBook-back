@@ -11,4 +11,6 @@ router.post('/pdf', upload.single('file'), stayInfoController.analyzePdf);
 
 router.get('/', stayInfoController.getAllStays);
 
+router.put('/:id', stayInfoController.updateStay);
+
 export default router;

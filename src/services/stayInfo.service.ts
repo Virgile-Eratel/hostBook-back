@@ -61,7 +61,7 @@ class StayInfoService {
                 ownerContact: accommodation.ownerContact,
                 ownerName: accommodation.ownerName,
                 generalInfo: accommodation.generalInfo,
-                accessPassword, // Ajouter le mot de passe
+                accessPassword,
                 recommendations: {
                     create: recommendations.map((rec) => ({
                         name: rec.name,

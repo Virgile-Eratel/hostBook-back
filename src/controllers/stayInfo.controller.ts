@@ -72,6 +72,17 @@ class StayInfoController {
             res.status(500).json({ error: 'Failed to fetch stays' });
         }
     }
+
+    async updateStay(req: Request, res: Response) {
+        try {
+            const { id } = req.params;
+            const stay = await stayInfoService.updateStay(id, req.body);
+            res.status(200).json(stay);
+        } catch (error) {
+            console.error('Error updating stay:', error);
+            res.status(500).json({ error: 'Failed to update stay info' });
+        }
+    }
 }
 
 export default new StayInfoController();
