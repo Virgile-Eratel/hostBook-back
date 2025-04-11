@@ -1,6 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 
-// Singleton pattern to reuse the Prisma instance
 class PrismaService {
   private static instance: PrismaService;
   private prisma: PrismaClient;

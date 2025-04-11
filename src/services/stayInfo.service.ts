@@ -41,7 +41,7 @@ class StayInfoService {
             description?: string;
             type: "RESTAURANT" | "ACTIVITY" | "BAR" | "TOURISM" | "GROCERY";
         }>;
-        accessPassword?: string; // Mot de passe optionnel
+        accessPassword?: string;
     }) {
         const { arrival, departure, accommodation, recommendations = [] } = data;
 

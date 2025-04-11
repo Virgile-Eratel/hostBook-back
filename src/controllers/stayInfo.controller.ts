@@ -40,7 +40,6 @@ class StayInfoController {
             const { id } = req.params;
             const { password } = req.query; // Récupérer le mot de passe depuis les paramètres de la requête
 
-            // Vérifier si le mot de passe est fourni
             if (!password) {
                 return res.status(401).json({ error: 'Password is required to access stay information' });
             }
@@ -51,7 +50,6 @@ class StayInfoController {
                 return res.status(404).json({ error: 'Stay not found' });
             }
 
-            // Vérifier si le mot de passe correspond
             if (stay.accessPassword !== password) {
                 return res.status(401).json({ error: 'Invalid password' });
             }
